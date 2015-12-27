@@ -36,7 +36,28 @@ based on operator precedence and loaded into stacks representing the post fix fo
  while loop running to allow for continuous user input
 A&B: I added an EXP operation! You can assign an exponent by using the '^' symbol rather than the '**' command
 """
-import Stack
+#import Stack
+class Stack:
+     def __init__(self,L=[]):
+         self.items = L
+
+     def isEmpty(self):
+         return self.items == []
+
+     def push(self, item):
+         self.items.append(item)
+
+     def pop(self):
+         return self.items.pop()
+
+     def peek(self):
+         return self.items[len(self.items)-1]
+
+     def size(self):
+         return len(self.items)
+
+     def clear(self):
+         self.items = []
 
 #operator codes, DLR is lowest precedence
 ERR=-1; ADD=0; SUB=1; MLT=2; DIV=3; UNM=4; LPN=5; RPN=6; DLR=7; EXP=8; SIN=9;
@@ -72,8 +93,8 @@ prec = [
 ]
 
 #print op_dict[]
-postStack = Stack.Stack([])
-opStack = Stack.Stack([])
+postStack = Stack([])
+opStack = Stack([])
 
 stringProcess = []
 inputexp = str(raw_input("Please input your expression:"))
@@ -178,8 +199,8 @@ def operateStacks(tokens):
 #uses the postFix stack to then operate on the expression as appropriate. Doesnt worry about precedence
 #because that has already been established
 def calculate(postFix):
-    numStack = Stack.Stack([])
-    reversePost = Stack.Stack([])
+    numStack = Stack([])
+    reversePost = Stack([])
     answer = 0
     start = 0
     numLeft = 0
